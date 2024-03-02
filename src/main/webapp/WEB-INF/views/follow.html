@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h2>User List</h2>
+    <div class="search-bar">
+        <form th:action="@{/follower/search/{userId}(userId=${userId})}" method="get">
+            <input type="text" class="search-input" name="userName" placeholder="Search...">
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </div>
+
+    <div th:each="user : ${allUsers}" class="user-details">
+        <div class="user-profile-pic">
+            <img th:src="${user.getUserInfo().getImage()}" alt="Profile Pic">
+        </div>
+        <div class="user-info">
+            <p><strong>Username:</strong> <span th:text="${user.getUserName()}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${user.getEmail()}"></span></p>
+            <p><strong>Phone Number:</strong> <span th:text="${user.getPhoneNumber()}"></span></p>
+        </div>
+        <div class="actions">
+            <button class="subscribe-btn" onclick="subscribe()">  Subscribe</button>
+            <button class="followers-btn" onclick="showFollowers()">Followers</button>
+        </div>
+    </div>
+</div>
+<script>
+    function subscribe() {
+        alert("Subscribed successfully!");
+
+        // Add logic to handle subscription
+    }
+
+    function showFollowers() {
+        alert("Displaying followers...");
+        // Add logic to show user's followers
+    }
+</script>
+</body>
+</html>
